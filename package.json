@@ -1,0 +1,57 @@
+{
+  "name": "@boson-so/react-jup",
+  "version": "0.0.2",
+  "private": false,
+  "scripts": {
+    "build": "npx rollup -c"
+  },
+  "files": ["dist"],
+  "main": "dist/index.js",
+  "dependencies": {
+    "@babel/polyfill": "^7.12.1",
+    "@jup-ag/react-hook": "^1.0.0-beta.23",
+    "@nextui-org/react": "^1.0.0-beta.8",
+    "@solana/spl-token-registry": "^0.2.298",
+    "@solana/wallet-adapter-base": "^0.9.5",
+    "@solana/wallet-adapter-react": "^0.15.4",
+    "@solana/wallet-adapter-react-ui": "^0.9.6",
+    "@solana/wallet-adapter-wallets": "^0.16.0",
+    "cross-fetch": "^3.1.5",
+    "grommet": "^2.24.0",
+    "grommet-icons": "^4.7.0",
+    "next": "^12.0.7",
+    "next-compose-plugins": "^2.2.1",
+    "next-transpile-modules": "^9.0.0",
+    "react": "18.1.0",
+    "react-dom": "18.1.0",
+    "styled-components": "^5.3.5",
+    "use-dark-mode": "^2.3.1"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.17.10",
+    "@babel/core": "^7.18.2",
+    "@babel/preset-env": "^7.18.2",
+    "@types/node": "16.11.7",
+    "@types/react": "17.0.34",
+    "autoprefixer": "^10.4.0",
+    "babel-core": "^6.26.3",
+    "babel-runtime": "^6.26.0",
+    "eslint": "7",
+    "eslint-config-next": "12.0.3",
+    "postcss": "^8.3.11",
+    "rollup": "^2.75.5",
+    "rollup-plugin-sass": "^1.2.12",
+    "rollup-plugin-typescript2": "^0.32.1",
+    "typescript": "4.4.4"
+  },
+  "peerDependencies": {
+    "react": "18.1.0",
+    "react-dom": "18.1.0",
+    "cross-fetch": "^3.1.5",
+    "grommet": "^2.24.0",
+    "grommet-icons": "^4.7.0"
+  },
+  "resolutions": {
+    "@solana/buffer-layout": "4.0.0"
+  }
+}
