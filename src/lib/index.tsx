@@ -1,3 +1,3 @@
-import JupiterForm from './JupiterForm';
+import JupiterForm from "./JupiterForm";
 
-export default JupiterForm
+export default JupiterForm;

@@ -48,4 +48,20 @@ const SwapScreen = ({ children }) => {
 }
 ```
 
+4. Customizing styles:
+
+You can customize whole form colors by replacing the styles prop, the default props are:
+
+```
+const defaultProps = {
+  styles: {
+    primaryBackground: "#0E0D11",
+    secondaryBackground: "#131318",
+    stroke: "#51576B",
+    primaryText: "#fff",
+    accent: "#3f52ff",
+  },
+};
+```
+
 ## Demo: https://boson.so/swap

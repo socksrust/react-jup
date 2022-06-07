@@ -11,12 +11,33 @@ import { TOKEN_LIST_URL, useJupiter } from "@jup-ag/react-hook";
 import fetch from "cross-fetch";
 import { Refresh } from "grommet-icons";
 
-interface IJupiterFormProps {}
+const defaultProps = {
+  styles: {
+    primaryBackground: "#0E0D11",
+    secondaryBackground: "#131318",
+    stroke: "#51576B",
+    primaryText: "#fff",
+    accent: "#3f52ff",
+  },
+};
+
+interface IJupiterFormProps {
+  styles: {
+    primaryBackground: string;
+    secondaryBackground: string;
+    stroke: string;
+    primaryText: string;
+    accent: string;
+  };
+}
+
 type UseJupiterProps = Parameters<typeof useJupiter>[0];
 
 const SECOND_TO_REFRESH = 30;
 
-const JupiterForm: FunctionComponent<IJupiterFormProps> = () => {
+const JupiterForm: FunctionComponent<IJupiterFormProps> = ({
+  styles: { primaryBackground, secondaryBackground, primaryText, accent },
+}) => {
   const wallet = useWallet();
   const [tokenMap, setTokenMap] = useState<Map<string, TokenInfo>>(new Map());
   const [exp, setExp] = useState(new RegExp("", "i"));
@@ -24,8 +45,8 @@ const JupiterForm: FunctionComponent<IJupiterFormProps> = () => {
   const [formValue, setFormValue] = useState<UseJupiterProps>({
     amount: 4 * 10, // unit in lamports (Decimals)
     inputMint: new PublicKey("EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v"),
-    outputMint: new PublicKey("So11111111111111111111111111111111111111112"),
-    slippage: 5, // 0.1%
+    outputMint: new PublicKey("Es9vMFrzaCERmJfrF4H2FYD4KCoNkY11McCe8BenwNYB"),
+    slippage: 5, // 0.5%
   });
 
   const [inputTokenInfo, outputTokenInfo] = useMemo(() => {
@@ -119,11 +140,11 @@ const JupiterForm: FunctionComponent<IJupiterFormProps> = () => {
   });
 
   return (
-    <Card height="normal" width="normal" background="dark-2">
+    <Card height="normal" width="normal" background={secondaryBackground}>
       <CardBody pad="medium" gap="30px">
         <Box direction="column" gap="5px">
           <Box direction="row" justify="between" align="end">
-            <Text>You pay</Text>
+            <Text color={primaryText}>You pay</Text>
             <Button
               plain
               icon={<Refresh size="18px" />}
@@ -134,7 +155,7 @@ const JupiterForm: FunctionComponent<IJupiterFormProps> = () => {
           <Box
             direction="row"
             gap="10px"
-            background="dark-1"
+            background={primaryBackground}
             style={{
               borderRadius: "1rem",
               height: 56,
@@ -176,7 +197,7 @@ const JupiterForm: FunctionComponent<IJupiterFormProps> = () => {
                     }
                     style={{ width: "30px", borderRadius: "2rem" }}
                   />
-                  <Text>
+                  <Text color={primaryText}>
                     {tokenMap.get(formValue?.inputMint?.toBase58()!)?.symbol}
                   </Text>
                 </Box>
@@ -204,6 +225,7 @@ const JupiterForm: FunctionComponent<IJupiterFormProps> = () => {
               plain="full"
               size="medium"
               textAlign="end"
+              color={primaryText}
               style={{ height: "100%" }}
               value={formValue.amount}
               onInput={(e: any) => {
@@ -218,11 +240,11 @@ const JupiterForm: FunctionComponent<IJupiterFormProps> = () => {
           </Box>
         </Box>
         <Box direction="column" gap="5px">
-          <Text>You get</Text>
+          <Text color={primaryText}>You get</Text>
           <Box
             direction="row"
             gap="10px"
-            background="dark-1"
+            background={primaryBackground}
             style={{
               borderRadius: "1rem",
               height: 56,
@@ -237,6 +259,7 @@ const JupiterForm: FunctionComponent<IJupiterFormProps> = () => {
               onClose={() => {
                 setExp(new RegExp("", "i"));
               }}
+              color={primaryText}
               onSearch={(text) => {
                 // The line below escapes regular expression special characters:
                 // [ \ ^ $ . | ? * + ( )
@@ -264,7 +287,7 @@ const JupiterForm: FunctionComponent<IJupiterFormProps> = () => {
                     }
                     style={{ width: "30px", borderRadius: "2rem" }}
                   />
-                  <Text>
+                  <Text color={primaryText}>
                     {tokenMap.get(formValue?.outputMint?.toBase58()!)?.symbol}
                   </Text>
                 </Box>
@@ -288,6 +311,7 @@ const JupiterForm: FunctionComponent<IJupiterFormProps> = () => {
               placeholder="0"
               height="100%"
               plain="full"
+              color={primaryText}
               size="medium"
               textAlign="end"
               style={{ height: "100%" }}
@@ -322,7 +346,7 @@ const JupiterForm: FunctionComponent<IJupiterFormProps> = () => {
                     backgroundImage:
                       "linear-gradient(96.8deg,#faa43a 4.71%,#71e5ed 87.84%)",
                   }}
-                  background="dark-1"
+                  background={primaryBackground}
                   gap="5px"
                   pad="10px"
                 >
@@ -352,8 +376,12 @@ const JupiterForm: FunctionComponent<IJupiterFormProps> = () => {
             type="button"
             disabled={loading}
             label={"Swap best route"}
+            size="medium"
             style={{
               marginTop: 20,
+              color: primaryText,
+              backgroundColor: accent,
+              borderWidth: 0,
             }}
             onClick={async () => {
               if (
@@ -394,5 +422,7 @@ const JupiterForm: FunctionComponent<IJupiterFormProps> = () => {
     </Card>
   );
 };
+
+JupiterForm.defaultProps = defaultProps;
 
 export default JupiterForm;
