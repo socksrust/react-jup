@@ -1,4 +1,5 @@
 # Jupiter Solana React widget
+<img width="1496" alt="Screen Shot 2022-06-07 at 11 37 31" src="https://user-images.githubusercontent.com/13947203/172408491-adbc7efb-5618-4366-bc6a-0d24ef4eb954.png">
 
 <p align="center">
   <a href="https://boson.son">Provided by: Boson! (boson.so)</a>
